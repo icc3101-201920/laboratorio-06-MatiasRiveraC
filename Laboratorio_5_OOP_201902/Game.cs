@@ -105,9 +105,12 @@ namespace Laboratorio_5_OOP_201902
         }
         public void Play()
         {
-            Visualization.ShowDecks(decks);
-            int choice = Visualization.GetUserInput()
-
+            foreach (Player player in players)
+            {
+                Visualization.ShowProgramMessage(Convert.ToString(player.Id) + "select Deck and Captains");
+                Visualization.ShowDecks(decks);
+                int choice = Visualization.GetUserInput(decks.Count);
+            }
         }
         public void AddDecks()
         {

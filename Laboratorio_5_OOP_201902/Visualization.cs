@@ -62,8 +62,7 @@ namespace Laboratorio_5_OOP_201902
 
         public static int GetUserInput(int maxInput, bool stopper= false)
         {
-            bool Run = true;
-            while(Run)
+            while(true)
             switch (stopper)
             {
                 case true:
@@ -77,7 +76,7 @@ namespace Laboratorio_5_OOP_201902
                         }
                         else
                         {
-                                Run = false;
+                                return value;
                         }
 
                     }
@@ -100,7 +99,7 @@ namespace Laboratorio_5_OOP_201902
                         }
                             else
                             {
-                                Run = false;
+                                return value;
                             }
 
                         }
