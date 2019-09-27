@@ -16,12 +16,24 @@ namespace Laboratorio_5_OOP_201902
         private List<Deck> decks;
         private List<SpecialCard> captains;
         private Board boardGame;
+        private int turn;
 
         //Constructor
         public Game()
         {
+            Random rnd = new Random();
+            players = new Player[]{ new Player(), new Player()};
+            activePlayer = players[rnd.Next(0,players.Length)];
+            boardGame = new Board();
             decks = new List<Deck>();
             captains = new List<SpecialCard>();
+            foreach(Player player in players)
+            {
+                player.Board = boardGame;
+            }
+            AddDecks();
+            AddCaptains();
+            turn = 0;
         }
         //Propiedades
         public Player[] Players
@@ -93,7 +105,9 @@ namespace Laboratorio_5_OOP_201902
         }
         public void Play()
         {
-            throw new NotImplementedException();
+            Visualization.ShowDecks(decks);
+            int choice = Visualization.GetUserInput()
+
         }
         public void AddDecks()
         {
