@@ -8,6 +8,7 @@ namespace Laboratorio_5_OOP_201902
     {
         static void Main(string[] args)
         {
+			/*
             Game game = new Game();
             game.AddDecks();
             game.AddCaptains();
@@ -31,7 +32,9 @@ namespace Laboratorio_5_OOP_201902
             {
                 Console.WriteLine($"{counter++}: {card.Name}");
             }
-            
+			*/
+			Game game = new Game();
+			game.Play();
             //Test Change Card
             
             //player.ChangeCard(3);

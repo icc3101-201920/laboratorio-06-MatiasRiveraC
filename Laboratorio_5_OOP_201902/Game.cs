@@ -27,12 +27,13 @@ namespace Laboratorio_5_OOP_201902
             boardGame = new Board();
             decks = new List<Deck>();
             captains = new List<SpecialCard>();
-            foreach(Player player in players)
+			AddDecks();
+			AddCaptains();
+			foreach (Player player in players)
             {
                 player.Board = boardGame;
             }
-            AddDecks();
-            AddCaptains();
+            
             turn = 0;
         }
         //Propiedades
@@ -107,9 +108,47 @@ namespace Laboratorio_5_OOP_201902
         {
             foreach (Player player in players)
             {
-                Visualization.ShowProgramMessage(Convert.ToString(player.Id) + "select Deck and Captains");
+                Visualization.ShowProgramMessage("Player "+Convert.ToString(player.Id) + " select Deck and Captains");
+
                 Visualization.ShowDecks(decks);
-                int choice = Visualization.GetUserInput(decks.Count);
+				int choiceDeck = Visualization.GetUserInput(decks.Count - 1);
+				Deck deckChoice = decks[choiceDeck];
+				player.Deck = deckChoice;
+				player.FirstHand();
+				Visualization.ShowCaptains(captains);
+				int choiceCaptain = Visualization.GetUserInput(captains.Count - 1);
+				player.ChooseCaptainCard(captains[choiceCaptain]);
+
+
+				Visualization.ShowListOptions(new List<string>() {"Change Card", "Pass" }, "Change 3 cards or ready to play:");
+				int choice = Visualization.GetUserInput(1);
+				int cont = 0;
+				int choiceCard = -1;
+				if (choice == 0)
+				{
+					while (true)
+					{
+						if (cont != 3)
+						{
+							Visualization.ShowHand(player.Hand);
+							Visualization.ShowProgramMessage("Input the numbers  of the cards to change (max 3). To stop enter -1");
+							choiceCard = Visualization.GetUserInput(player.Hand.Cards.Count - 1, true);
+						}
+						if (choiceCard == -1 || cont ==3)
+						{
+							break;
+						}
+						else
+						{
+							player.ChangeCard(choiceCard);
+							cont++;
+						}
+					}
+				}
+				Visualization.ClearConsole();
+				
+
+
             }
         }
         public void AddDecks()

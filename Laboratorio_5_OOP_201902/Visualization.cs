@@ -19,13 +19,13 @@ namespace Laboratorio_5_OOP_201902
                 {
                     CombatCard Ccard = (CombatCard)card;
                     Console.ForegroundColor = ConsoleColor.Red ;
-                    Console.WriteLine("|({0}) {1} {2}: {3} |",cont, card.Name,card.Type,Ccard.AttackPoints);
+                    Console.WriteLine("|({0}) {1} ({2}): {3} |",cont, card.Name,card.Type,Ccard.AttackPoints);
                     Console.ResetColor();
                 }
                 else if ((int)card.Type != 0)
                 {
                     Console.ForegroundColor = ConsoleColor.Blue;
-                    Console.WriteLine("|({0}) {1} {2} |", cont, card.Name, card.Type);
+                    Console.WriteLine("|({0}) {1} ({2}) |", cont, card.Name, card.Type);
                     Console.ResetColor();
                 }
                 cont++;
@@ -68,10 +68,11 @@ namespace Laboratorio_5_OOP_201902
                 case true:
                     try
                     {
-                        int value = Console.Read();
-                        if (value<0 || value > maxInput)
+                        string str = Console.ReadLine();
+						int value = Convert.ToInt32(str);
+                        if (value<-1 || value > maxInput)
                         {
-                            string error = ("The option ("+ Convert.ToString(maxInput) + ") is not valid, try again");
+                            string error = ("The option ("+ Convert.ToString(value) + ") is not valid, try again");
                             ConsoleError(error);
                         }
                         else
@@ -91,10 +92,11 @@ namespace Laboratorio_5_OOP_201902
                 case false:
                     try
                     {
-                        int value = Console.Read();
-                        if (value < -1 || value > maxInput)
+							string str = Console.ReadLine();
+							int value = Convert.ToInt32(str);
+							if (value < 0 || value > maxInput)
                         {
-                            string error = ("The option (" + Convert.ToString(maxInput) + ") is not valid, try again");
+                            string error = ("The option (" + Convert.ToString(value) + ") is not valid, try again");
                             ConsoleError(error);
                         }
                             else
